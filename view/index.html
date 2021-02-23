@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./reset.css">
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+    {{resetCss}} {{indexCss}}
+
+</head>
+
+<body>
+
+    {{commands}}
+    <div class="add">新增</div>
+    <div class="commands_content_header">
+        <div class="name">名称</div>
+        <div class="code">代码</div>
+        <div class="editor">操作</div>
+    </div>
+    <div class="commands_content"></div>
+    <div class="add-new-command hidden">
+        <div class="center">
+            <div class="close">关闭</div>
+            <div class="reset">重置</div>
+            <div class="name item">
+                <div class="key">名称</div>
+                <input type="text" class="value">
+            </div>
+            <div class="command item">
+                <div class="key">代码</div>
+                <textarea name="" id="" cols="30" rows="10" class="value"></textarea>
+                <!-- <div class="value" contenteditable="true"></div> -->
+                <div class="view" tabindex="0"></div>
+            </div>
+            <div class="confirm">确认</div>
+        </div>
+    </div>
+    <script>
+        // https://javascript.info/selection-range
+        function formatCode(str) {
+            const keyword_blue = /\b(class|function|let|const|var|arguments|delete|false|true|this|new|null|void|undefined|in|of)\b/g;
+            const keyword_pink = /\b(import|from|return|yield|try|catch|finally|switch|case|break|throw|for|continue|do|while|if|else|with)\b/g;
+            const instance_green = /\b(Boolean|RegExp|Error|Array|Object|Date|Function|Math|Number|String)\b/g;
+
+            str = str.replace(/ +?/g, `&nbsp;`); // change space to %nbsp; first
+            // 多行注释这块还有问题呀
+            str = str.replace(/(\/\*([\&;\w\'\s\r\n\*])*\*\/)|((\/\/[^\n\r]*))/g, '<span class="comment">$1$4</span>'); // change comment
+            str = str.replace(keyword_blue, '<span class="keyword_blue">$1</span>'); // some keyword
+            str = str.replace(keyword_pink, '<span class="keyword_pink">$1</span>'); // some keyword
+            str = str.replace(instance_green, '<span class="instance_green">$1</span>'); // some keyword
+            str = str.replace(/([a-zA-Z0-9_]+?)(\()/g, '<span class="method-name">$1</span>$2'); // method-name
+            str = str.replace(/((\(|\)|\{|\})+?)/g, '<span class="white">$1</span>'); // white
+            str = str.replace(/\r\n|\r|\n/g, '<br/>');
+            return str;
+        }
+
+
+        function convert2html(command) {
+            const codeStr = command.command.toString();
+            const matchRes = codeStr.match(/`(.|\r|\n)*`/g);
+            return `<div class="command">
+                <div class="name">${command.name}</div>
+                <div class="code">${formatCode(matchRes ? matchRes[0].replace(/`/g, '') : codeStr)}</div>
+                ${
+                    command.editable ? `
+                    <div class="editor">
+                        <div class="modify">修改</div>
+                        <div class="delete">删除</div>
+                    </div>
+                    ` : '<div class="editor"></div>'
+                }
+            </div>`;
+        }
+        const prefix = 'codeNote.';
+
+        window.onload = function() {
+            const vscode = acquireVsCodeApi();
+            const _commands = Object.values(window.commands);
+
+            let commands_content = '';
+            _commands.forEach((command) => {
+                commands_content += convert2html(command);
+            });
+
+
+
+
+            const commandsDom = document.querySelector('.commands_content');
+            commandsDom.innerHTML = commands_content;
+            const add = document.querySelector('.add');
+            const close = document.querySelector('.close');
+            const reset = document.querySelector('.reset');
+            const confirm = document.querySelector('.confirm');
+            const newCommand = document.querySelector('.add-new-command');
+            const codeView = document.querySelector('.command .view');
+            const codeInput = document.querySelector('.command .value');
+            const name = document.querySelector('.add-new-command .name .value');
+
+            const sel = window.getSelection()
+            const range = document.createRange();
+
+            codeInput.addEventListener('input', function(e) {
+                codeView.innerHTML = formatCode(codeInput.value);
+            });
+            codeView.addEventListener('focus', function(e) {
+                codeInput.focus();
+            });
+
+            add.addEventListener('click', function(e) {
+                newCommand.classList.toggle('hidden');
+            });
+            close.addEventListener('click', function(e) {
+                newCommand.classList.toggle('hidden');
+            });
+            reset.addEventListener('click', function(e) {
+                codeView.innerHTML = codeInput.value = '';
+            });
+            confirm.addEventListener('click', function(e) {
+                const nameVal = name.value;
+                const code = codeInput.value;
+                if (!nameVal || !code) {
+                    return vscode.postMessage({
+                        command: 'error',
+                        errorMsg: '不能为空'
+                    })
+                }
+                
+                const command = {
+                    name: `${prefix}${name.value}`,
+                    title: name.value,
+                    activationEvents: `onCommand:${prefix}${name.value}`,
+                    editable: true,
+                    command: codeInput.value,
+                };
+                commands_content += convert2html(command);
+                commandsDom.innerHTML = commands_content;
+                vscode.postMessage({
+                    command: 'add-new-command',
+                    data: command
+                })
+                newCommand.classList.toggle('hidden');
+            });
+        }
+    </script>
+</body>
+
+</html>

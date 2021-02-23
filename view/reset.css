@@ -1,0 +1,102 @@
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+div,
+p,
+ol,
+ul,
+li,
+span,
+em,
+b,
+i,
+strong,
+img,
+a,
+input,
+select,
+dl,
+dd,
+dt,
+header,
+footer,
+textarea,
+button,
+input {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-family: inherit;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+    /* 优先使用apple pingfang整体中英文字体, 非apple时先设置英文, 然后是中文 */
+    font-family: 'PingFang SC', 'Helvetica Neue', Helvetica, Arial, 'Microsoft YaHei', sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+    user-select: none;
+    overflow-y: auto;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+b,
+em,
+i,
+strong {
+    font-style: normal;
+    font-weight: normal;
+}
+
+input,
+textarea,
+button {
+    background: transparent;
+    -webkit-appearance: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+button {
+    border: none;
+    outline: none;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: #d1cece;
+}
+
+textarea,
+input,
+select {
+    resize: none;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+a[x-apple-data-detectors] {
+    color: inherit !important;
+    text-decoration: none !important;
+    font-size: inherit !important;
+    font-family: inherit !important;
+    font-weight: inherit !important;
+    line-height: inherit !important;
+}

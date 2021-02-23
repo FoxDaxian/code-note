@@ -1,0 +1,233 @@
+body {
+    min-height: 100vh;
+    background-color: #282828;
+    border: 10px solid #212121;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.add {
+    margin-bottom: 30px;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px 20px;
+    border: 1px solid #656565;
+}
+
+.commands_content .command {
+    min-height: 80px;
+    display: flex;
+}
+
+.commands_content .editor {
+    width: 80px;
+    padding: 6px 0;
+    box-sizing: border-box;
+    margin-left: 20px;
+    border-bottom: 1px solid #656565;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* 之后再加上吧 */
+    display: none;
+}
+
+.commands_content .name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 0;
+    box-sizing: border-box;
+    width: 250px;
+    
+    margin-right: 20px;
+    color: #fff;
+    font-size: 16px;
+    border-bottom: 1px solid #656565;
+}
+
+
+.commands_content .code {
+    padding: 6px 10px;
+    box-sizing: border-box;
+    flex: 1;
+    border-bottom: 1px solid #656565;
+}
+
+.commands_content_header {
+    display: flex;
+    text-align: center;
+}
+
+.commands_content_header .name {
+    padding: 6px 0;
+    box-sizing: border-box;
+    width: 250px;
+    margin-right: 20px;
+    border-bottom: 1px solid #656565;
+}
+
+
+.commands_content_header .code {
+    padding: 6px 0;
+    box-sizing: border-box;
+    flex: 1;
+    border-bottom: 1px solid #656565;
+}
+
+.commands_content_header .editor {
+    padding: 6px 0;
+    width: 80px;
+    box-sizing: border-box;
+    margin-left: 20px;
+    border-bottom: 1px solid #656565;
+}
+
+.keyword_blue {
+    color: #569BD5;
+}
+
+.keyword_pink {
+    color: #BB80B6;
+}
+
+.instance_green {
+    color: #4DC6AE;
+}
+
+.comment {
+    color: #508E45;
+}
+
+.comment span {
+    color: #508E45!important;
+}
+
+.method-name {
+    color: #D3D59A;
+}
+
+.commands_content {
+    color: #7FD3FA;
+}
+
+.white {
+    color: #CDCDCD;
+}
+
+.hidden {
+    display: none;
+}
+.add-new-command {
+    overflow: scroll;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    background-color: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+}
+.close {
+    position: absolute;
+    cursor: pointer;
+    color: #fff;
+    top: 20px;
+    right: 30px;
+}
+
+.reset {
+    position: absolute;
+    cursor: pointer;
+    color: #fff;
+    top: 20px;
+    right: 80px;
+}
+.confirm {
+    display: inline-block;
+    padding: 10px 30px;
+    margin: 0 auto;
+    color: #fff;
+    box-sizing: border-box;
+    margin-top: 24px;
+    cursor: pointer;
+    border: 1px solid #656565;
+}
+.hidden {
+    display: none;
+}
+
+.center {
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    padding: 30px;
+    background-color: #1C1C1C;
+    box-shadow: 0px 0px 3px #fff;
+    border-radius: 8px;
+    position: relative;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+}
+.item .key {
+    margin-right: 20px;
+}
+.item input {
+    color: #fff;
+    padding: 4px 6px;
+    border: 1px solid #656565;
+    box-sizing: border-box;
+}
+.item .key {
+    color: #fff;
+}
+.item .view {
+    font-size: 16px;
+    width: 350px;
+    min-height: 200px;
+    padding: 4px 6px;
+    color: #fff;
+    border: 1px solid #656565;
+    box-sizing: border-box;
+    word-break: break-all;
+}
+
+.add-new-command .view {
+    margin-left: 10px;
+    color: #7FD3FA;
+    position: relative;
+}
+.add-new-command .view::after {
+    content: 'code preview(代码预览)';
+    color: #fff;
+    opacity: 0.1;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.command .value {
+    font-size: 16px;
+    width: 350px;
+    min-height: 200px;
+    padding: 4px 6px;
+    color: #fff;
+    border: 1px solid #656565;
+    box-sizing: border-box;
+    word-break: break-all;
+}
+
+.modify {
+    margin-bottom: 8px;
+}
+.delete, .modify{
+    cursor: pointer;
+    color: #fff;
+}

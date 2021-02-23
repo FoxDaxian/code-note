@@ -1,0 +1,63 @@
+{
+    "name": "code-note",
+    "publisher": "foxDaxian",
+    "displayName": "code-note",
+    "description": "代码笔记本",
+    "version": "0.0.5",
+    "engines": {
+        "vscode": "^1.52.0"
+    },
+    "categories": [
+        "Other"
+    ],
+    "activationEvents": [
+        "onCommand:codeNote.custom",
+        "onCommand:codeNote.debounce",
+        "onCommand:codeNote.throttle",
+        "onCommand:codeNote.rrrr"
+    ],
+    "main": "./out/extension.js",
+    "contributes": {
+        "commands": [
+            {
+                "command": "codeNote.custom",
+                "title": "新增code"
+            },
+            {
+                "command": "codeNote.debounce",
+                "title": "debounce(防抖)"
+            },
+            {
+                "command": "codeNote.throttle",
+                "title": "throttle(节流)"
+            },
+            {
+                "command": "codeNote.rrrr",
+                "title": "rrrr"
+            }
+        ]
+    },
+    "scripts": {
+        "assign:commands": "node ./utils/assignCommands.js",
+        "vscode:prepublish": "yarn run compile",
+        "compile": "tsc -p ./ && node ./utils/assignCommands.js",
+        "watch": "node ./utils/assignCommands.js && tsc -watch -p ./",
+        "pretest": "yarn run compile && yarn run lint",
+        "lint": "eslint src --ext ts",
+        "test": "node ./out/test/runTest.js"
+    },
+    "devDependencies": {
+        "@types/glob": "^7.1.3",
+        "@types/mocha": "^8.0.4",
+        "@types/node": "^12.11.7",
+        "@types/vscode": "^1.52.0",
+        "@typescript-eslint/eslint-plugin": "^4.14.1",
+        "@typescript-eslint/parser": "^4.14.1",
+        "eslint": "^7.19.0",
+        "glob": "^7.1.6",
+        "mocha": "^8.2.1",
+        "typescript": "^4.1.3",
+        "vscode-test": "^1.5.0"
+    },
+    "dependencies": {}
+}
