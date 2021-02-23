@@ -3,9 +3,13 @@
     "publisher": "foxDaxian",
     "displayName": "code-note",
     "description": "代码笔记本",
-    "version": "0.0.5",
+    "version": "0.0.6",
     "engines": {
         "vscode": "^1.52.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/FoxDaxian/code-note"
     },
     "categories": [
         "Other"

@@ -26,7 +26,7 @@ function checkDir(path: string): Promise<Boolean> {
         fs.stat(path, (err, stats) => {
             if (err) {
                 fs.mkdirSync(path);
-                return;
+                return res(true);
             }
             if (!stats.isDirectory()) {
                 fs.mkdirSync(path);
@@ -55,6 +55,7 @@ export async function activate(context: vscode.ExtensionContext) {
     const homedir = require('os').homedir();
 
     const root = path.join(homedir, 'code-note/');
+    await checkDir(root);
     let customCommands = await getCustomCommands(root);
 
     const htmlPath = path.join(context.extensionPath, 'view', 'index.html');
