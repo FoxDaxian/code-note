@@ -3,7 +3,8 @@
     "publisher": "foxDaxian",
     "displayName": "code-note",
     "description": "代码笔记本",
-    "version": "0.0.6",
+    "version": "0.0.7",
+    "icon": "assets/logo.png",
     "engines": {
         "vscode": "^1.52.0"
     },
@@ -17,8 +18,7 @@
     "activationEvents": [
         "onCommand:codeNote.custom",
         "onCommand:codeNote.debounce",
-        "onCommand:codeNote.throttle",
-        "onCommand:codeNote.rrrr"
+        "onCommand:codeNote.throttle"
     ],
     "main": "./out/extension.js",
     "contributes": {
@@ -34,10 +34,6 @@
             {
                 "command": "codeNote.throttle",
                 "title": "throttle(节流)"
-            },
-            {
-                "command": "codeNote.rrrr",
-                "title": "rrrr"
             }
         ]
     },

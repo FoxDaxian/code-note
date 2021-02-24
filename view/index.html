@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./reset.css">
-    <link rel="stylesheet" href="./index.css">
     <title>Document</title>
     {{resetCss}} {{indexCss}}
 
@@ -41,7 +39,7 @@
     <script>
         // https://javascript.info/selection-range
         function formatCode(str) {
-            const keyword_blue = /\b(class|function|let|const|var|arguments|delete|false|true|this|new|null|void|undefined|in|of)\b/g;
+            const keyword_blue = /\b(function|let|const|var|arguments|delete|false|true|this|new|null|void|undefined|in|of)\b/g;
             const keyword_pink = /\b(import|from|return|yield|try|catch|finally|switch|case|break|throw|for|continue|do|while|if|else|with)\b/g;
             const instance_green = /\b(Boolean|RegExp|Error|Array|Object|Date|Function|Math|Number|String)\b/g;
 

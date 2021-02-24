@@ -14,3 +14,7 @@
 - throttle(节流)
 
 
+## 使用示例 
+
+![](https://raw.githubusercontent.com/FoxDaxian/FoxDaxian.github.io/master/assets/picgo/20210224200922.gif)
+
